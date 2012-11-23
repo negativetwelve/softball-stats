@@ -1,5 +1,12 @@
 <% provide(:title, 'Add a pitch') %>
 
+<ul class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li class="active">Add a pitch</li>
+    
+  <li class="pull-right"><%= link_to "Sign out", signout_path %></li>
+</ul>
+
 <div class="create-pitch">
   <%= form_for(@pitch) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>

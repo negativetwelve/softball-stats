@@ -1,0 +1,18 @@
+<% provide(:title, 'Stats') %>
+
+<ul class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li class="active">Stats</li>
+    
+  <li class="pull-right"><%= link_to "Sign out", signout_path %></li>
+</ul>
+<h1>Stats</h1>
+
+<table class="table table-striped">
+  <th>Name</th>
+<% @players.each do |player| %>
+  <tr>
+    <td><%= link_to "#{player.name}", player %>
+  </tr>
+<% end %>
+</table>

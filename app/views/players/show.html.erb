@@ -1,0 +1,9 @@
+<ul class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li><%= link_to "Stats", players_path %></li>
+  <li class="active"><%= @player.name %></li>
+    
+  <li class="pull-right"><%= link_to "Sign out", signout_path %></li>
+</ul>
+
+<h1><%= @player.name %>

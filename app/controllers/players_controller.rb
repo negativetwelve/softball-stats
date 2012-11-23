@@ -4,6 +4,10 @@ class PlayersController < ApplicationController
     @players = Player.where(user_id: current_user.id)
   end
   
+  def show
+    @player = Player.find(params[:id])
+  end
+  
   def new 
     @player = Player.new
   end

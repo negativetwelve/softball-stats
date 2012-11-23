@@ -1,5 +1,12 @@
 <% provide(:title, 'Create a new Player') %>
 
+<ul class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li class="active">Create a player</li>
+    
+  <li class="pull-right"><%= link_to "Sign out", signout_path %></li>
+</ul>
+
 <div class="create-player">
   <h1>New Player</h1>
   <%= form_for(@player) do |f| %>
