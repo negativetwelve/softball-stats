@@ -1,0 +1,28 @@
+<% provide(:title, 'Add a pitch') %>
+
+<div class="create-pitch">
+  <%= form_for(@pitch) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <% @locations.each_with_index do |n, index| %>
+      <% if index % 8 == 0 && index != 0 %>
+        <br>
+      <% end %>
+      <% color = "red" %>
+      <%= f.radio_button :location, n %>
+    <% end %>
+    <br>
+    
+    <%= f.label :label %>
+    <%= f.select :label, options_for_select(@labels) %>
+    <br>
+    
+    <%= f.label :outcome %>
+    <%= f.select :outcome, options_for_select(@outcomes) %>
+    <br>
+    <br>
+    <%= f.hidden_field :player_id, {id: @pitch.player_id} %>
+    <%= f.submit "Submit Pitch", class: "btn btn-large btn-primary" %>
+  <% end %>
+  
+</div>

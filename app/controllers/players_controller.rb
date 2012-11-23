@@ -1,5 +1,9 @@
 class PlayersController < ApplicationController
   
+  def index
+    @players = Player.where(user_id: current_user.id)
+  end
+  
   def new 
     @player = Player.new
   end
@@ -19,7 +23,7 @@ class PlayersController < ApplicationController
   def active
     @player = Player.find(params[:id])
     @player.active = true
-    @player.order_num = @player.user.players.where(active: true).count + 1
+    @player.order_num = @player.user.active_players.count + 1
     if @player.save
       redirect_to root_url, flash: {success: "#{@player.first_name} is now active."}
     else
@@ -31,6 +35,10 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
     @player.active = false
     if @player.save
+      @player.user.active_players.each_with_index do |player, index|
+        player.order_num = index+1
+        player.save
+      end
       redirect_to root_url, flash: {message: "#{@player.first_name} is now on the bench."}
     else
       redirect_to root_url, flash: {failure: "An error has occurred."}

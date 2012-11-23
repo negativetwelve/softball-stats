@@ -3,6 +3,7 @@
   <ul class="breadcrumb">
     <li class="active">Home</li>
     <li><%= link_to "Create a player", new_player_path %></li>
+    <li><%= link_to "Stats", players_path %>
     
     <li class="pull-right"><%= link_to "Sign out", signout_path %></li>
   </ul>
@@ -18,7 +19,7 @@
     
     <% @players_active.each do |player| %>
     <tr>
-      <td><%= player.first_name %> <%= player.last_name %></td> 
+      <td><%= link_to "#{player.first_name} #{player.last_name}", new_pitch_path(id: player.id) %></td> 
       <td><%= player.order_num %></td>
       <td><%= link_to "Up", update_order_path(id: player.id, direction: -1, order_num: player.order_num), method: :put %></td>
       <td><%= link_to "Down", update_order_path(id: player.id, direction: 1, order_num: player.order_num), method: :put %></td>

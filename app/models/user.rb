@@ -20,6 +20,14 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
+  def active_players
+    self.players.where(active: true).order(:order_num)
+  end
+  
+  def bench_players
+    self.players.where(active: false).order(:last_name)
+  end
+
   def feed
     Micropost.from_users_followed_by(self)
   end
