@@ -2,8 +2,8 @@ class StaticPagesController < ApplicationController
 
   def home
     if signed_in?
-      @micropost  = current_user.microposts.build
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      @players_active = current_user.players.where(active: true).order(:order_num)
+      @players_bench = current_user.players.where(active: false).order(:last_name)
     end
   end
   

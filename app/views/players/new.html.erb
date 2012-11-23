@@ -1,0 +1,18 @@
+<% provide(:title, 'Create a new Player') %>
+
+<div class="create-player">
+  <h1>New Player</h1>
+  <%= form_for(@player) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+
+    <%= f.label :number %>
+    <%= f.text_field :number %>
+    <br>
+    <%= f.submit "Create Player", class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>

@@ -28,7 +28,7 @@ ul li {
 }
 
 .main {
-  //min-width: 850px;
+
 }
 
 @media (max-width: 767px) {
@@ -37,10 +37,10 @@ ul li {
     padding: 0;
     border: none;
     display: block;
-    width: 100%;
+    width: 96%;
     min-width: 0;
     margin-top: 0;
-    padding: 0 5px;
+    padding: 2%;
     clear: both;
     background-color: white;
     position: absolute;
@@ -79,4 +79,8 @@ ul li {
 
 .signup {
   margin: 0;
+}
+
+.create-player {
+  
 }

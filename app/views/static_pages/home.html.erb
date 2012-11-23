@@ -1,10 +1,51 @@
 <% if signed_in? %>
-  <h1>Players</h1>
-  <% current_user.players.each do |player| %>
-    <%= player.first_name %><%= player.last_name %></br>
-  <% end %>
+
+  <ul class="breadcrumb">
+    <li class="active">Home</li>
+    <li><%= link_to "Create a player", new_player_path %></li>
+    
+    <li class="pull-right"><%= link_to "Sign out", signout_path %></li>
+  </ul>
+
+  
+  <h1>Active Players</h1>
+  <table class="table table-striped">
+    <th>Name</th>
+    <th>Batting Position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    
+    <% @players_active.each do |player| %>
+    <tr>
+      <td><%= player.first_name %> <%= player.last_name %></td> 
+      <td><%= player.order_num %></td>
+      <td><%= link_to "Up", update_order_path(id: player.id, direction: -1, order_num: player.order_num), method: :put %></td>
+      <td><%= link_to "Down", update_order_path(id: player.id, direction: 1, order_num: player.order_num), method: :put %></td>
+      <td><%= link_to "Move to Bench", bench_path(id: player.id), method: :put %></td>
+    </tr>
+    <% end %>
+  </table>
+  
+  <h1>Bench Players</h1>
+    <table class="table table-striped">
+      <th>Name</th>
+      <th></th>
+      <% @players_bench.each do |player| %>
+      <tr>
+        <td><%= player.first_name %> <%= player.last_name %></td>
+        <td><%= link_to "Make active", active_path(id: player.id), method: :put %></td>
+      </tr>
+      <% end %>
+    </table>
+  
+  
+  
+  
+  
 <% else %>
   <h1>Softball Statistics Tracker and Analyzer</h1>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  <%= link_to "Sign up!", signup_path, class: "btn btn-large btn-primary" %>
+  <%= link_to "Sign in!", signin_path, class: "btn btn-large btn-primary" %>
 <% end %>
